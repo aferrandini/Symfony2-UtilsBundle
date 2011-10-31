@@ -14,7 +14,7 @@ class Coordinates {
      * @var float
      */
     private $latitude;
-    
+
     /**
      * @var float
      */
@@ -24,7 +24,7 @@ class Coordinates {
      * @param float $latitude
      * @param float $longitude
      */
-    public function __construct(float $latitude, float $longitude)
+    public function __construct($latitude, $longitude)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
@@ -34,7 +34,7 @@ class Coordinates {
      * @param float $latitude
      * @return void
      */
-    public function setLatitude(float $latitude)
+    public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
     }
@@ -43,7 +43,7 @@ class Coordinates {
      * @param float $longitude
      * @return void
      */
-    public function setLongitude(float $longitude)
+    public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
     }
@@ -53,7 +53,7 @@ class Coordinates {
      */
     public function getLatitude()
     {
-        return $this->getLatitude();
+        return $this->latitude;
     }
 
     /**
@@ -61,6 +61,6 @@ class Coordinates {
      */
     public function getLongitude()
     {
-        return $this->getLongitude();
+        return $this->longitude;
     }
 }

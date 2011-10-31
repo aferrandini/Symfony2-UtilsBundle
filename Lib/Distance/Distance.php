@@ -19,11 +19,6 @@ class Distance {
      */
     public function fromAtoB(Coordinates $A, Coordinates $B)
     {
-        $lat1 = $A->getLatitude();
-        $lon1 = $A->getLongitude();
-        $lat2 = $this->punto2[0];
-        $lon2 = $this->punto2[1];
-
         $theta = $A->getLongitude() - $B->getLongitude();
         $dist  = round(sin(deg2rad($A->getLatitude())) * sin(deg2rad($B->getLatitude())) +  cos(deg2rad($A->getLatitude())) * cos(deg2rad($B->getLatitude())) * cos(deg2rad($theta)),15);
         $dist  = rad2deg(acos($dist)) * 60 * 1.1515 * 1.609344;
@@ -37,7 +32,7 @@ class Distance {
      * @param int $radio
      * @return bool
      */
-    public function isPointInsideTheCircle(Coordinates $A, Coordinates $center, float $radio = 0)
+    public function isPointInsideTheCircle(Coordinates $A, Coordinates $center, $radio=0)
     {
         if($radio <= 0) {
             return false;
