@@ -160,13 +160,23 @@ class BlackBerryPushRequest {
         return $this->boundary;
     }
 
-    public function getUrl() {
-        return $this->url;
+    /**
+     * Returns the Host
+     *
+     * @return string
+     */
+    public function getHost() {
+        return $this->host;
     }
 
-    public function setUrl($url='') {
-        if($url!='') {
-            $this->url = $url;
+    /**
+     * Sets the Host
+     *
+     * @param $host string
+     */
+    public function setHost($host='') {
+        if($host!='') {
+            $this->host = $host;
 
             return true;
         }
@@ -174,9 +184,14 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function setUser($user='') {
-        if($user!='') {
-            $this->user = $user;
+    /**
+     * Sets the username
+     *
+     * @param $username string
+     */
+    public function setUsername($username='') {
+        if($username!='') {
+            $this->username = $username;
 
             return true;
         }
@@ -184,10 +199,20 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function getUser() {
-        return $this->user;
+    /**
+     * Returns the username
+     *
+     * @return string
+     */
+    public function getUsername() {
+        return $this->username;
     }
 
+    /**
+     * Sets the Password
+     *
+     * @param $password string
+     */
     public function setPassword($password='') {
         if($password!='') {
             $this->password = $password;
@@ -198,13 +223,23 @@ class BlackBerryPushRequest {
         return false;
     }
 
+    /**
+     * Returns the password
+     *
+     * @return string
+     */
     private function getPassword() {
         return $this->password;
     }
 
-    public function setServiceId($service_id='') {
-        if($service_id!='') {
-            $this->service_id = $service_id;
+    /**
+     * Sets the AppID
+     *
+     * @param $app_id string
+     */
+    public function setAppId($app_id='') {
+        if($app_id!='') {
+            $this->app_id = $app_id;
 
             return true;
         }
@@ -212,8 +247,13 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function getServiceId() {
-        return $this->service_id;
+    /**
+     * Returns the AppId
+     *
+     * @return string
+     */
+    public function getAppId() {
+        return $this->app_id;
     }
 
     /**
@@ -251,4 +291,5 @@ class BlackBerryPushRequest {
     public function getMessage() {
         return $this->message;
     }
+
 }
