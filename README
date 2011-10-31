@@ -2,3 +2,12 @@ Symfony2-UtilsBundle
 
 This Bundle includes some utils
 
+HOWTO Install
+add this lines to your deps file
+
+[FerrandiniUtilsBundle]
+    git=http://github.com/aferrandini/Symfony2-UtilsBundle.git
+    target=Ferrandini/
+
+Run ./bin/vendors install
+
