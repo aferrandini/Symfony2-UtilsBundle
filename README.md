@@ -6,9 +6,9 @@ This Bundle includes some utils
 
 Add this lines to your deps file:
 
-[FerrandiniUtilsBundle]
-    git=http://github.com/aferrandini/Symfony2-UtilsBundle.git
-    target=/bundles/Ferrandini/UtilsBundle
+    [FerrandiniUtilsBundle]
+        git=http://github.com/aferrandini/Symfony2-UtilsBundle.git
+        target=/bundles/Ferrandini/UtilsBundle
 
 Run ./bin/vendors install
 
