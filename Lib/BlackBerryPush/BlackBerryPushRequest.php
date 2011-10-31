@@ -197,5 +197,4 @@ class BlackBerryPushRequest {
     public function getMessage() {
         return $this->message;
     }
-
 }
