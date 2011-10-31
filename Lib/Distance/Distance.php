@@ -7,8 +7,8 @@
  *
  */
 
-namespace Ferrandini\Bundle\UtilsBundle\Lib\Distance;
-use Ferrandini\Bundle\UtilsBundle\Lib\Distance\Coordinates;
+namespace Ferrandini\UtilsBundle\Lib\Distance;
+use Ferrandini\UtilsBundle\Lib\Distance\Coordinates;
 
 class Distance {
 

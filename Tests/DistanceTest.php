@@ -1,6 +1,6 @@
 <?php
 
-namespace Ferrandini\Bundle\UtilsBundle\Tests;
+namespace Ferrandini\UtilsBundle\Tests;
 
 class DistanceTest extends \PHPUnit_Framework_TestCase
 {

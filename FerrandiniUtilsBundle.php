@@ -1,6 +1,6 @@
 <?php
 
-namespace Ferrandini\Bundle\UtilsBundle;
+namespace Ferrandini\UtilsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

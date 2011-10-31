@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="neosistec_utils.example.class">Neosistec\Bundle\UtilsBundle\Example</parameter>
+        <parameter key="ferrandini_utils.example.class">Ferrandini\Bundle\UtilsBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="neosistec_utils.example" class="%neosistec_utils.example.class%">
+        <service id="ferrandini_utils.example" class="%ferrandini_utils.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
@@ -19,7 +19,7 @@
     -->
 
     <parameters>
-        <parameter key="ferrandini_utils.distance.class">Ferrandini\Bundle\UtilsBundle\Lib\Distance\Distance</parameter>
+        <parameter key="ferrandini_utils.distance.class">Ferrandini\UtilsBundle\Lib\Distance\Distance</parameter>
     </parameters>
 
     <services>

@@ -7,7 +7,7 @@
  * Description: 
  * 
  */
-namespace Ferrandini\Bundle\UtilsBundle\Lib\Distance;
+namespace Ferrandini\UtilsBundle\Lib\Distance;
 
 class Coordinates {
     /**
