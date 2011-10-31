@@ -26,7 +26,8 @@ class BlackBerryPushRequest {
     protected $response   = null;
 
     /**
-     * 
+     * Constructor
+     *
      * @param string $host
      * @param string $username
      * @param string $password
@@ -118,26 +119,46 @@ class BlackBerryPushRequest {
         return true;
     }
 
-
     /**
-     * Getters/Setters
+     * Returns the XML for the Response Object
+     *
+     * @return string
      */
     public function getResponse() {
         return $this->response;
     }
 
+    /**
+     * Sets the response object as XML
+     *
+     * @param $response string
+     */
     private function setResponse($response) {
         $this->response = $response;
     }
 
+    /**
+     * Returns the XML for the Request Object
+     *
+     * @return string
+     */
     public function getRequest() {
         return $this->request;
     }
 
+    /**
+     * Sets the request object as XML
+     *
+     * @param $request string
+     */
     private function setRequest($resquest) {
         $this->request = $resquest;
     }
 
+    /**
+     * Generates the Boundary POST Body using the
+     * host, username and app_id fields
+     */
     private function generateBoundary() {
         $this->boundary = md5(
             microtime(true) . ':'
@@ -147,17 +168,32 @@ class BlackBerryPushRequest {
         );
     }
 
+    /**
+     * Returns the Boundary POST Body
+     *
+     * @return string
+     */
     private function getBoundary() {
         return $this->boundary;
     }
 
-    public function getUrl() {
-        return $this->url;
+    /**
+     * Returns the Host
+     *
+     * @return string
+     */
+    public function getHost() {
+        return $this->host;
     }
 
-    public function setUrl($url='') {
-        if($url!='') {
-            $this->url = $url;
+    /**
+     * Sets the Host
+     *
+     * @param $host string
+     */
+    public function setHost($host='') {
+        if($host!='') {
+            $this->host = $host;
 
             return true;
         }
@@ -165,9 +201,14 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function setUser($user='') {
-        if($user!='') {
-            $this->user = $user;
+    /**
+     * Sets the username
+     *
+     * @param $username string
+     */
+    public function setUsername($username='') {
+        if($username!='') {
+            $this->username = $username;
 
             return true;
         }
@@ -175,10 +216,20 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function getUser() {
-        return $this->user;
+    /**
+     * Returns the username
+     *
+     * @return string
+     */
+    public function getUsername() {
+        return $this->username;
     }
 
+    /**
+     * Sets the Password
+     *
+     * @param $password string
+     */
     public function setPassword($password='') {
         if($password!='') {
             $this->password = $password;
@@ -189,13 +240,23 @@ class BlackBerryPushRequest {
         return false;
     }
 
+    /**
+     * Returns the password
+     *
+     * @return string
+     */
     private function getPassword() {
         return $this->password;
     }
 
-    public function setServiceId($service_id='') {
-        if($service_id!='') {
-            $this->service_id = $service_id;
+    /**
+     * Sets the AppID
+     *
+     * @param $app_id string
+     */
+    public function setAppId($app_id='') {
+        if($app_id!='') {
+            $this->app_id = $app_id;
 
             return true;
         }
@@ -203,27 +264,49 @@ class BlackBerryPushRequest {
         return false;
     }
 
-    public function getServiceId() {
-        return $this->service_id;
+    /**
+     * Returns the AppId
+     *
+     * @return string
+     */
+    public function getAppId() {
+        return $this->app_id;
     }
 
-    public function setDevices($devices=array()) {
+    /**
+     * Sets the Devices
+     *
+     * @param $devices mixed
+     */
+    public function setDevices($devices) {
         $this->devices = $devices;
-
-        return true;
     }
 
+    /**
+     * Returns the Devices
+     *
+     * @return mixed
+     */
     public function getDevices() {
         return $this->devices;
     }
 
+    /**
+     * Sets the Message
+     *
+     * @param $message string
+     */
     public function setMessage($message='') {
         $this->message = trim($message);
-
-        return true;
     }
 
+    /**
+     * Returns the Message
+     *
+     * @return string
+     */
     public function getMessage() {
         return $this->message;
     }
+
 }
