@@ -1,7 +1,4 @@
 <?php
-
-namespace Ferrandini\UtilsBundle\Lib\BlackBerryPush;
-
 /**
  * 
  * RequestPush class allows send PUSH request to the BlackBerry Push Servers.
@@ -9,13 +6,12 @@ namespace Ferrandini\UtilsBundle\Lib\BlackBerryPush;
  * @author Ariel Ferrandini Price
  *
  */
-class BlackBerryPushRequest {
-    private const PUSH_RESOURCE = "/mss/PD_pushRequest";
+namespace Ferrandini\UtilsBundle\Lib\BlackBerryPush;
 
-    protected $host       = null;
-    protected $username   = null;
-    protected $password   = null;
-    protected $app_id     = null;
+use Ferrandini\UtilsBundle\Lib\BlackBerryPush\BlackBerryPushConfiguration;
+
+class BlackBerryPushRequest {
+    protected $config     = null;
 
     protected $boundary   = null;
     protected $devices    = null;
@@ -33,22 +29,9 @@ class BlackBerryPushRequest {
      * @param string $password
      * @param string $app_id
      */
-    public function __construct($host, $username, $password, $app_id) {
-        if(!$this->setHost($host)) {
-            throw new \InvalidArgumentException('The parameter "host" must be set');
-        }
-
-        if(!$this->setUsername($username)) {
-            throw new \InvalidArgumentException('The parameter "username" must be set');
-        }
-
-        if(!$this->setPassword($password)) {
-            throw new \InvalidArgumentException('The parameter "password" must be set');
-        }
-
-        if($this->setAppId($app_id)) {
-            throw new \InvalidArgumentException('The parameter "app_id" must be set');
-        }
+    public function __construct(BlackberryPushConfiguration $config)
+    {
+        $this->config = $config;
 
         // Generate the Boundary for the POST Body
         $this->generateBoundary();
@@ -63,10 +46,10 @@ class BlackBerryPushRequest {
         $this->setMessage($message);
 
         try {
-            $ch = curl_init($this->getUrl());
-            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt ($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_USERPWD, $this->getUser().':'.$this->getPassword());
+            $ch = curl_init($this->config->getServiceUrl());
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_USERPWD, $this->config->getUsername().':'.$this->config->getPassword());
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/related; type=\"application/xml\"; boundary="'.$this->getBoundary().'"' ));
 
             $postData = '
@@ -75,7 +58,7 @@ class BlackBerryPushRequest {
   <?xml version="1.0"?>
   <!DOCTYPE pap PUBLIC "-//WAPFORUM//DTD PAP 1.0//EN" "http://www.openmobilealliance.org/tech/DTD/pap_1.0.dtd">
   <pap>
-      <push-message push-id="'.time().'" source-reference="'.$this->getServiceId().'" deliver-before-timestamp="'.date('Y-m-dTH:i:sZ', mktime(23,59,59,12,31,date('Y')+10)).'">
+      <push-message push-id="'.time().'" source-reference="'.$this->config->getAppId().'" deliver-before-timestamp="'.date('Y-m-dTH:i:sZ', mktime(23,59,59,12,31,date('Y')+10)).'">
    ';
 
             if (is_array($this->getDevices())) {
@@ -104,7 +87,7 @@ class BlackBerryPushRequest {
 
             $this->request = $postData;
 
-            curl_setopt ($ch, CURLOPT_POSTFIELDS, $postData);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
             $this->setResponse(curl_exec($ch));
             $info = curl_getinfo($ch);
             curl_close ($ch);
@@ -162,9 +145,9 @@ class BlackBerryPushRequest {
     private function generateBoundary() {
         $this->boundary = md5(
             microtime(true) . ':'
-            . $this->getHost() . ':'
-            . $this->getUsername() . ':'
-            . getAppId()
+            . $this->config->getHost() . ':'
+            . $this->config->getUsername() . ':'
+            . $this->config->getAppId()
         );
     }
 
@@ -177,103 +160,7 @@ class BlackBerryPushRequest {
         return $this->boundary;
     }
 
-    /**
-     * Returns the Host
-     *
-     * @return string
-     */
-    public function getHost() {
-        return $this->host;
-    }
-
-    /**
-     * Sets the Host
-     *
-     * @param $host string
-     */
-    public function setHost($host='') {
-        if($host!='') {
-            $this->host = $host;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Sets the username
-     *
-     * @param $username string
-     */
-    public function setUsername($username='') {
-        if($username!='') {
-            $this->username = $username;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Returns the username
-     *
-     * @return string
-     */
-    public function getUsername() {
-        return $this->username;
-    }
-
-    /**
-     * Sets the Password
-     *
-     * @param $password string
-     */
-    public function setPassword($password='') {
-        if($password!='') {
-            $this->password = $password;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Returns the password
-     *
-     * @return string
-     */
-    private function getPassword() {
-        return $this->password;
-    }
-
-    /**
-     * Sets the AppID
-     *
-     * @param $app_id string
-     */
-    public function setAppId($app_id='') {
-        if($app_id!='') {
-            $this->app_id = $app_id;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Returns the AppId
-     *
-     * @return string
-     */
-    public function getAppId() {
-        return $this->app_id;
-    }
-
-    /**
+   /**
      * Sets the Devices
      *
      * @param $devices mixed
@@ -308,5 +195,4 @@ class BlackBerryPushRequest {
     public function getMessage() {
         return $this->message;
     }
-
 }
