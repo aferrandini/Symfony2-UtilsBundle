@@ -50,6 +50,7 @@ class BlackBerryPushRequest {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_USERPWD, $this->config->getUsername().':'.$this->config->getPassword());
+
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/related; type=\"application/xml\"; boundary="'.$this->getBoundary().'"' ));
 
             $postData = '
@@ -88,6 +89,7 @@ class BlackBerryPushRequest {
             $this->request = $postData;
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
             $this->setResponse(curl_exec($ch));
             $info = curl_getinfo($ch);
             curl_close ($ch);
