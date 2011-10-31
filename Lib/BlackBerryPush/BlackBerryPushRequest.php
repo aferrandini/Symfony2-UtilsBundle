@@ -58,7 +58,7 @@ class BlackBerryPushRequest {
   <?xml version="1.0"?>
   <!DOCTYPE pap PUBLIC "-//WAPFORUM//DTD PAP 1.0//EN" "http://www.openmobilealliance.org/tech/DTD/pap_1.0.dtd">
   <pap>
-      <push-message push-id="'.time().'" source-reference="'.$this->config->getAppId().'" deliver-before-timestamp="'.date('Y-m-dTH:i:sZ', mktime(23,59,59,12,31,date('Y')+10)).'">
+      <push-message push-id="'.time().'" source-reference="'.$this->getServiceId().'" deliver-before-timestamp="'.date('Y-m-dTH:i:sZ', mktime(23,59,59,12,31,date('Y')+10)).'">
    ';
 
             if (is_array($this->getDevices())) {
@@ -87,7 +87,7 @@ class BlackBerryPushRequest {
 
             $this->request = $postData;
 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+            curl_setopt ($ch, CURLOPT_POSTFIELDS, $postData);
             $this->setResponse(curl_exec($ch));
             $info = curl_getinfo($ch);
             curl_close ($ch);
@@ -145,9 +145,9 @@ class BlackBerryPushRequest {
     private function generateBoundary() {
         $this->boundary = md5(
             microtime(true) . ':'
-            . $this->config->getHost() . ':'
-            . $this->config->getUsername() . ':'
-            . $this->config->getAppId()
+            . $this->getHost() . ':'
+            . $this->getUsername() . ':'
+            . getAppId()
         );
     }
 
@@ -160,7 +160,63 @@ class BlackBerryPushRequest {
         return $this->boundary;
     }
 
-   /**
+    public function getUrl() {
+        return $this->url;
+    }
+
+    public function setUrl($url='') {
+        if($url!='') {
+            $this->url = $url;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function setUser($user='') {
+        if($user!='') {
+            $this->user = $user;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUser() {
+        return $this->user;
+    }
+
+    public function setPassword($password='') {
+        if($password!='') {
+            $this->password = $password;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private function getPassword() {
+        return $this->password;
+    }
+
+    public function setServiceId($service_id='') {
+        if($service_id!='') {
+            $this->service_id = $service_id;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getServiceId() {
+        return $this->service_id;
+    }
+
+    /**
      * Sets the Devices
      *
      * @param $devices mixed
