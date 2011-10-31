@@ -29,18 +29,18 @@ class Distance {
     /**
      * @param Coordinates $A
      * @param Coordinates $center
-     * @param int $radio
+     * @param int $radius
      * @return bool
      */
-    public function isPointInsideTheCircle(Coordinates $A, Coordinates $center, $radio=0)
+    public function isPointInsideTheCircle(Coordinates $A, Coordinates $center, $radius=0)
     {
-        if($radio <= 0) {
+        if($radius <= 0) {
             return false;
         }
 
         $distance = $this->fromAtoB($A, $center);
 
-        if($distance <= $radio) {
+        if($distance <= $radius) {
             return true;
         } else {
             return false;

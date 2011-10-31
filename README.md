@@ -32,7 +32,9 @@ Add the UtilsBundle to your application's kernel:
         ...
     }
 
-## Usage ##
+## Usage fromAtoB ##
+
+This method returns the distance from A to B in meters
 
 Get the service from the container and run the method you need:
 
@@ -52,6 +54,30 @@ From a command:
             new Ferrandini\UtilsBundle\Lib\Distance\Coordinates($latitude_2, $longitude_2)
         );
 
+## Usage isPointInsideTheCircle ##
+
+This method returns true or false if the point given is inside the circle create
+by the center given and the radius
+
+Get the service from the container and run the method you need:
+
+In a controller get the instance and call the method you want:
+
+    $isInside = $this->get('ferrandini_utils.distance')
+        ->isPointInsideTheCircle(
+            new Ferrandini\UtilsBundle\Lib\Distance\Coordinates($latitude, $longitude),
+            new Ferrandini\UtilsBundle\Lib\Distance\Coordinates($center_latitude, $center_longitude),
+            $radius
+        );
+
+From a command:
+
+    $isInside = $this->container->get('ferrandini_utils.distance')
+        ->isPointInsideTheCircle(
+            new Ferrandini\UtilsBundle\Lib\Distance\Coordinates($latitude, $longitude),
+            new Ferrandini\UtilsBundle\Lib\Distance\Coordinates($center_latitude, $center_longitude),
+            $radius
+        );
 
 
 
