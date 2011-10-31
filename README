@@ -1,13 +1,21 @@
-Symfony2-UtilsBundle
+# Symfony2-UtilsBundle #
 
 This Bundle includes some utils
 
-HOWTO Install
-add this lines to your deps file
+## HOWTO Install ##
+
+Add this lines to your deps file:
 
 [FerrandiniUtilsBundle]
     git=http://github.com/aferrandini/Symfony2-UtilsBundle.git
-    target=Ferrandini/
+    target=/bundles/Ferrandini/UtilsBundle
 
 Run ./bin/vendors install
 
+Register the bundle namespace into 'autoload.php' file:
+
+    $loader->registerNamespaces(array(
+        ...
+        'Ferrandini'       => __DIR__.'/../vendor/bundles',
+        ...
+    ));
