@@ -20,9 +20,13 @@
 
     <parameters>
         <parameter key="ferrandini_utils.distance.class">Ferrandini\UtilsBundle\Lib\Distance\Distance</parameter>
+        <parameter key="ferrandini_utils.slugger.class">Ferrandini\UtilsBundle\Lib\SlugGenerator\SlugGenerator</parameter>
     </parameters>
 
     <services>
         <service id="ferrandini_utils.distance" class="%ferrandini_utils.distance.class%" />
+
+        <service id="ferrandini_utils.slugger" class="%ferrandini_utils.slugger.class%" />
     </services>
+
 </container>
