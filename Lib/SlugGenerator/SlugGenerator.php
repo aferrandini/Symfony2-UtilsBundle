@@ -17,7 +17,7 @@ class SlugGenerator {
      *
      * @return string
      */
-    public function generate($url, int $length=50)
+    public function generate($url, $length=50)
     {
         $slug = strtolower($url);
         $slug = preg_replace("/[^a-z0-9\s-]/", "", $slug);

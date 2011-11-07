@@ -16,7 +16,7 @@ class SlugGeneratorTest extends WebTestCase
 
         $slug = $slugger->generate("Nuevos Sistemas Tecnológicos S.L.");
 
-        $this->assertEquals("nuevos-sistemas-tecnologicos-sl", $slug);
+        $this->assertEquals("nuevos-sistemas-tecnolgicos-sl", $slug);
     }
 
     /**
