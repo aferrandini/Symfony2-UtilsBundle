@@ -24,10 +24,7 @@ class BlackBerryPushRequest {
     /**
      * Constructor
      *
-     * @param string $host
-     * @param string $username
-     * @param string $password
-     * @param string $app_id
+     * @param BlackBerryPushConfiguration $config
      */
     public function __construct(BlackberryPushConfiguration $config)
     {
