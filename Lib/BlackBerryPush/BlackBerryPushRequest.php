@@ -133,8 +133,8 @@ class BlackBerryPushRequest {
      *
      * @param $request string
      */
-    private function setRequest($resquest) {
-        $this->request = $resquest;
+    private function setRequest($request) {
+        $this->request = $request;
     }
 
     /**
