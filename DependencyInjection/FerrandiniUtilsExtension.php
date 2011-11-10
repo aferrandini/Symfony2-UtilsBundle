@@ -23,6 +23,18 @@ class FerrandiniUtilsExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
+        $loader->load('services_parameters.xml');
+
+        if(isset($config['distance']['enabled']) && $config['distance']['enabled']) {
+            $container->setDefinition('ferrandini_utils.distance', new Definition(
+                '%ferrandini_utils.distance.class%'
+             ));
+        }
+
+        if(isset($config['slugger']['enabled']) && $config['slugger']['enabled']) {
+            $container->setDefinition('ferrandini_utils.slugger', new Definition(
+                '%ferrandini_utils.slugger.class%'
+             ));
+        }
     }
 }

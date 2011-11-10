@@ -24,6 +24,24 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+            ->children()
+                ->arrayNode('distance')
+                    ->children()
+                        ->booleanNode('enabled')->end()
+                    ->end()
+                ->end()
+            ->end()
+
+            ->children()
+                ->arrayNode('slugger')
+                    ->children()
+                        ->booleanNode('enabled')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }
