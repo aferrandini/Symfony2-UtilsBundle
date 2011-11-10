@@ -9,7 +9,7 @@ namespace Ferrandini\UtilsBundle\Lib\BlackBerryPush;
 
 class BlackBerryPushConfiguration
 {
-    private const PUSH_RESOURCE = "/mss/PD_pushRequest";
+    const PUSH_RESOURCE = "/mss/PD_pushRequest";
 
     protected $host       = null;
     protected $username   = null;
@@ -121,7 +121,7 @@ class BlackBerryPushConfiguration
      *
      * @return string
      */
-    private function getPassword() {
+    public function getPassword() {
         return $this->password;
     }
 
