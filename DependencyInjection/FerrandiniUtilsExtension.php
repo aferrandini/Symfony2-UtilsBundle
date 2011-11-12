@@ -42,18 +42,36 @@ class FerrandiniUtilsExtension extends Extension
         if(isset($config['blackberry_push']['enabled']) && $config['blackberry_push']['enabled']) {
             if(isset($config['blackberry_push']['applications']) && is_array($config['blackberry_push']['applications'])) {
                 $this->configureBlackBerryPushApplications($config['blackberry_push']['applications'], $container);
-
-                $container->setDefinition('ferrandini_utils.slugger', new Definition(
-                    '%ferrandini_utils.slugger.class%'
-                ));
             }
         }
-        
-
     }
 
-    public function configureBlackBerryPushApplications($applications, $container)
+    public function configureBlackBerryPushApplications($applications, ContainerBuilder $container)
     {
-        var_dump($applications);
+        foreach($applications as $application) {
+            // Create the definition for the configuration service
+            $definition = new Definition('%ferrandini_utils.blackberry_push_configuration.class%');
+            $definition->addArgument($application['name']);
+            $definition->addArgument($application['host']);
+            $definition->addArgument($application['username']);
+            $definition->addArgument($application['password']);
+            $definition->addArgument($application['app_id']);
+
+            if($application['name'] === 'default') {
+                $service_name = '';
+            } else {
+                $service_name =  '.' . $application['name'];
+            }
+            
+            // Add the configuration service to the Container
+            $container->setDefinition('ferrandini_utils.blackberry_push.configuration' . $service_name, $definition);
+
+            // Create the definition for the request service
+            $definition = new Definition('%ferrandini_utils.blackberry_push_request.class%');
+            $definition->addArgument(new Reference('ferrandini_utils.blackberry_push.configuration.' . $application['name']));
+
+            // Add the request service to the Container
+            $container->setDefinition('ferrandini_utils.blackberry_push.request' . $service_name, $definition);
+        }
     }
 }

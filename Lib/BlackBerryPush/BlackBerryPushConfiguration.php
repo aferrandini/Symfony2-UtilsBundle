@@ -11,6 +11,7 @@ class BlackBerryPushConfiguration
 {
     const PUSH_RESOURCE = "/mss/PD_pushRequest";
 
+    protected $name       = null;
     protected $host       = null;
     protected $username   = null;
     protected $password   = null;
@@ -19,13 +20,18 @@ class BlackBerryPushConfiguration
     /**
      * Constructor
      *
+     * @param string $name
      * @param string $host
      * @param string $username
      * @param string $password
      * @param string $app_id
      */
-    public function __construct($host, $username, $password, $app_id) 
+    public function __construct($name, $host, $username, $password, $app_id)
     {
+        if(!$this->setName($name)) {
+            throw new \InvalidArgumentException('The parameter "name" must be set');
+        }
+        
         if(!$this->setHost($host)) {
             throw new \InvalidArgumentException('The parameter "host" must be set');
         }
@@ -51,6 +57,30 @@ class BlackBerryPushConfiguration
     public function getServiceUrl()
     {
         return $this->getHost() . BlackBerryPushConfiguration::PUSH_RESOURCE;
+    }
+
+    /**
+     * Returns the Name
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Sets the Name
+     *
+     * @param $name string
+     */
+    public function setName($name='') {
+        if($name!='') {
+            $this->name = $name;
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

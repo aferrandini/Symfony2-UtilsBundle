@@ -7,6 +7,8 @@
     <parameters>
         <parameter key="ferrandini_utils.distance.class">Ferrandini\UtilsBundle\Lib\Distance\Distance</parameter>
         <parameter key="ferrandini_utils.slugger.class">Ferrandini\UtilsBundle\Lib\SlugGenerator\SlugGenerator</parameter>
+        <parameter key="ferrandini_utils.blackberry_push_configuration.class">Ferrandini\UtilsBundle\Lib\BlackberryPush\BlackberryPushConfiguration</parameter>
+        <parameter key="ferrandini_utils.blackberry_push_request.class">Ferrandini\UtilsBundle\Lib\BlackberryPush\BlackberryPushRequest</parameter>
     </parameters>
 
 </container>
