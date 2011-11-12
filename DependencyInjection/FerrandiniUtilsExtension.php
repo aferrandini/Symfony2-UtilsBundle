@@ -69,7 +69,7 @@ class FerrandiniUtilsExtension extends Extension
 
             // Create the definition for the request service
             $definition = new Definition('%ferrandini_utils.blackberry_push_request.class%');
-            $definition->addArgument(new Reference('ferrandini_utils.blackberry_push.configuration.' . $application['name']));
+            $definition->addArgument(new Reference('ferrandini_utils.blackberry_push.configuration' . $service_name));
 
             // Add the request service to the Container
             $container->setDefinition('ferrandini_utils.blackberry_push.request' . $service_name, $definition);
