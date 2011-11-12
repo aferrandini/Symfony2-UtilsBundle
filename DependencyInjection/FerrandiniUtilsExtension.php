@@ -27,15 +27,16 @@ class FerrandiniUtilsExtension extends Extension
         $loader->load('services_parameters.xml');
 
         if(isset($config['distance']['enabled']) && $config['distance']['enabled']) {
-            $container->setDefinition('ferrandini_utils.distance', new Definition(
-                '%ferrandini_utils.distance.class%'
-             ));
+            $definition = new Definition('%ferrandini_utils.distance.class%');
+
+            $container->setDefinition('ferrandini_utils.distance', $definition);
         }
 
         if(isset($config['slugger']['enabled']) && $config['slugger']['enabled']) {
-            $container->setDefinition('ferrandini_utils.slugger', new Definition(
-                '%ferrandini_utils.slugger.class%'
-             ));
+            $definition = new Definition('%ferrandini_utils.slugger.class%');
+            $definition->addArgument($config['slugger']['max_length']);
+
+            $container->setDefinition('ferrandini_utils.slugger', $definition);
         }
     }
 }

@@ -38,6 +38,9 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->booleanNode('enabled')->end()
                     ->end()
+                    ->children()
+                        ->scalarNode('max_length')->defaultValue(50)->end()
+                    ->end()
                 ->end()
             ->end()
         ;
