@@ -40,9 +40,10 @@ To enable the different utils you have to add the enable configuration in your .
     #./app/config/config.yml
     ferrandini_utils:
         distance:
-            enabled:    true
+            enabled:      true
         slugger:
-            enabled:    false
+            enabled:      false
+            max_length:   50
 
 
 ## Usage ##

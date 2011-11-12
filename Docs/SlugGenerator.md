@@ -16,10 +16,19 @@ From a command:
     $slug = $this->container->get('ferrandini_utils.slugger')
         ->generate("I want to get the SLUG from this text");
 
-Also you can limit the slug length with a second parameter.
+Also you can limit the slug length using the method setMaxLength.
 
-To get a SLUG of 10 characters call the method with a second integer parameter:
+To get a SLUG of 10 characters call the method setMaxLength and then call the generator:
 
     $slug = $this->get('ferrandini_utils.slugger')
-        ->generate("I want to get the SLUG from this text", 10);
+        ->setMaxLength(10)
+        ->generate("I want to get the SLUG from this text");
 
+The default slug length is 50 characters, if you want to set a different default max length
+please use the config parameter max_length in your ./app/config.yml like this:
+
+    #./app/config/config.yml
+    ferrandini_utils:
+        slugger:
+            enabled:      false
+            max_length:   50
