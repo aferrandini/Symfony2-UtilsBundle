@@ -44,7 +44,7 @@ class BlackBerryPushConfiguration
             throw new \InvalidArgumentException('The parameter "password" must be set');
         }
 
-        if($this->setAppId($app_id)) {
+        if(!$this->setAppId($app_id)) {
             throw new \InvalidArgumentException('The parameter "app_id" must be set');
         }
     }
