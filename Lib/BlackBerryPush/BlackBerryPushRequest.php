@@ -44,7 +44,8 @@ class BlackBerryPushRequest {
 
         try {
             $ch = curl_init($this->config->getServiceUrl());
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_USERPWD, $this->config->getUsername().':'.$this->config->getPassword());
 
@@ -56,7 +57,7 @@ class BlackBerryPushRequest {
   <?xml version="1.0"?>
   <!DOCTYPE pap PUBLIC "-//WAPFORUM//DTD PAP 1.0//EN" "http://www.openmobilealliance.org/tech/DTD/pap_1.0.dtd">
   <pap>
-      <push-message push-id="'.time().'" source-reference="'.$this->config->getAppId().'" deliver-before-timestamp="'.date('Y-m-dTH:i:sZ', mktime(23,59,59,12,31,date('Y')+10)).'">
+      <push-message push-id="'.time().'" source-reference="'.$this->config->getAppId().'" deliver-before-timestamp="'.date('Y-m-d\TH:i:s\Z', mktime(23,59,59,12,31,date('Y')+10)).'">
    ';
 
             if (is_array($this->getDevices())) {
