@@ -8,7 +8,7 @@ First of all you have to get an AppId from BlackBerry to identify you applicatio
 and send PUSH messages to the devices.
 To get an Evaluation Push Service go to the follow URL:
 
-    * [BlackBerry Push Service Documentation and Registration](http://us.blackberry.com/developers/platform/pushapi.jsp)
+* [BlackBerry Push Service Documentation and Registration](http://us.blackberry.com/developers/platform/pushapi.jsp)
 
 And click the link "Register to evaluate the BlackBerry Push Service"
 
