@@ -33,6 +33,8 @@ class SlugGenerator {
         } else {
             throw new \InvalidArgumentException("The parameter 'max_length' must be a positive number");
         }
+
+        return $this;
     }
 
     public function getMaxLength()
