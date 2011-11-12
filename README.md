@@ -40,9 +40,19 @@ To enable the different utils you have to add the enable configuration in your .
     #./app/config/config.yml
     ferrandini_utils:
         distance:
-            enabled:    true
+            enabled:        true
         slugger:
-            enabled:    false
+            enabled:        true
+            max_length:     50
+        blackberry_push:
+            enabled:        true
+            applications:
+                default:
+                    name:       default
+                    host:       https://pushapi.eval.blackberry.com
+                    username:   1450-xxxxxxxxxxxxxxxxxx
+                    password:   12345678
+                    app_id:     1450-xxxxxxxxxxxxxxxxxx
 
 
 ## Usage ##

@@ -42,8 +42,19 @@ To enable the different utils you have to add the enable configuration in your .
         distance:
             enabled:      true
         slugger:
-            enabled:      false
+            enabled:      true
             max_length:   50
+        slugger:
+            enabled:    true
+        blackberry_push:
+            enabled:    true
+            applications:
+                default:
+                    name:       default
+                    host:       https://pushapi.eval.blackberry.com
+                    username:   1450-xxxxxxxxxxxxxxxxxx
+                    password:   12345678
+                    app_id:     1450-xxxxxxxxxxxxxxxxxx
 
 
 ## Usage ##
