@@ -40,9 +40,9 @@ class FerrandiniUtilsExtension extends Extension
         }
 
         if(isset($config['blackberry_push']['enabled']) && $config['blackberry_push']['enabled']) {
-            $this->configureBlackBerryPushApplications($config, $container);
-
             if(isset($config['blackberry_push']['applications']) && is_array($config['blackberry_push']['applications'])) {
+                $this->configureBlackBerryPushApplications($config['blackberry_push']['applications'], $container);
+
                 $container->setDefinition('ferrandini_utils.slugger', new Definition(
                     '%ferrandini_utils.slugger.class%'
                 ));
@@ -50,5 +50,10 @@ class FerrandiniUtilsExtension extends Extension
         }
         
 
+    }
+
+    public function configureBlackBerryPushApplications($applications, $container)
+    {
+        var_dump($applications);
     }
 }
